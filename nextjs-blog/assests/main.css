@@ -1,0 +1,19 @@
+.jumbotron>.container>.card {
+    width: 300px !important;
+    float: left;
+    margin-left: 12px;
+    margin-top: 12px;
+}
+#rt {
+    display: none;
+}
+.jumbotron>.container {
+    height: 1500px;
+}
+#niubi>.card {
+    width: 215px !important;
+    float: left;
+}
+#niubi>.card:nth-child(odd) {
+    margin-left: -20px;
+}
