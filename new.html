@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html" charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#container {
+				position: relative;
+				left: 80px;
+				top: 20px;
+				width: fit-content;
+				display: flex;
+			}
+
+			#collapseExample {
+				margin-top: 10px;
+				display: block;
+				width: 500px;
+			}
+
+			#aq {
+				width: 760px;
+			}
+
+			#aq>button {
+				margin-left: 5px;
+				margin-top: 5px;
+			}
+
+			#skills {
+				border-radius: 50%;
+				border: 0.6px solid orange;
+
+				margin-right: 18px;
+			}
+
+			.enemy {
+				display: flex;
+			}
+
+			.enemy>div {
+				margin-left: 20px;
+				position: relative;
+			}
+			.pos {
+				/* position: absolute; */
+				margin-left: 14px;
+				margin-top: 2px;
+			}
+			.enemy>div:nth-child(1) {
+				margin-left: 15px;
+			}
+			.myz {
+				width: 65.19px;
+				height: 65.19px;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.js" type="text/javascript" charset="utf-8"></script>
+		<!-- CSS only -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		 crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="container">
+			<!-- <input type="" v-model="hero" name="" id="" />
+			<button type="button" @click="getData()" class="btn btn-success">点击查看详情信息</button>
+			<!-- <h2>{{hero?skill:""}}</h2> -->
+			<!-- <ul style="display: flex;">
+				<li v-for="(item, i) in set" :key="i">
+					<h5>
+						<span>名字:</span><span>{{item.sname}}</span>
+					</h5>
+					<h5>
+						<span>定位:</span><span>{{item.mode}}</span>
+					</h5>
+					<h5>
+						<span>技能:</span><span>{{item.name}}</span>
+					</h5>
+					<h5>
+						<span>所属势力:</span><span>{{item.region}}</span>
+					</h5>
+				</li>
+			</ul> -->
+			<div id="">
+				<div id="aq">
+					<button v-for="(item, i) in set" :key="i" class="btn btn-success" @click="getInfo(item)">{{item.sname}}</button>
+				</div>
+				<div id="bq">
+					<div class="collapse" id="collapseExample">
+						<div class="card" style="width: 45rem;">
+							<!-- <img :src="lengendsImage" class="card-img-top" alt="...">
+						  <div class="card-body">
+								<p><span>姓名:</span>&emsp;&emsp;&emsp;{{currentLengend.sname}}</p>
+								<p><span>定位:</span>&emsp;&emsp;&emsp;{{currentLengend.mode}}</p>
+								<p><span>技能:</span>&emsp;&emsp;&emsp;{{currentLengend.name}}<img id="skills" :src="skillImage" ></p>
+								<p><span>所属势力:</span>&emsp;{{currentLengend.region}}</p>
+						  </div> -->
+							<img :src="lengendsImage" class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">技能展示</h5>
+								<p class="card-text"><img :src="skillImage" id="skills"><span style="font-size: 18px;">{{currentLengend.name}}</span></p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">定位<span>&emsp;&emsp;&emsp;&emsp;&emsp;{{currentLengend.mode}}</span></li>
+								<li class="list-group-item">所属势力<span>&emsp;&emsp;&emsp;{{currentLengend.region}}</span></li>
+							</ul>
+							<div class="card-body">
+								<a href="#" class="card-link">背景故事</a>
+								<div class="dropdown" style="display: inline-block; margin-left: 435px;">
+								  <button @click="flag = !flag" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    点击加入我方阵营
+								  </button>
+								  <div v-if="flag" style="display: block;" class="dropdown-menu" aria-labelledby="dropdownMenuButton" ref="jj">
+								    <a class="dropdown-item" @click="addToUs" href="#">上单</a>
+								    <a class="dropdown-item" @click="addToUs" href="#">打野</a>
+								    <a class="dropdown-item" @click="addToUs" href="#">中单</a>
+									<a class="dropdown-item" @click="addToUs" href="#">AD</a>
+									<a class="dropdown-item" @click="addToUs" href="#">辅助</a>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="test">
+				<div class="card">
+					<div class="card-header">
+						我方阵营
+					</div>
+					<div class="card-body">
+						<blockquote class="blockquote mb-0">
+							<div class="enemy">
+								<div v-for="(item, i) in position" ref="wuu" :key="i">
+									<div id="">
+										<img ref="yy" :src="item.lengend?item.lengend:dei" class='myz' id="skills" />
+									</div>
+									<div ref="pp" class="pos">
+										{{item.posi}}
+									</div>
+								</div>
+							</div>
+						</blockquote>
+					</div>
+				</div>
+				<div class="card" style="margin-top: 95px;">
+					<div class="card-header">
+						敌方阵营
+					</div>
+					<div class="card-body">
+						<blockquote class="blockquote mb-0">
+							<div class="enemy">
+								<div id="">
+									<div id="">
+										<img :src="enemy" id="skills" />
+									</div>
+									<div class="pos">
+										上单
+									</div>
+								</div>
+								<div id="">
+									<div id="">
+										<img :src="enemy" id="skills" />
+									</div>
+									<div class="pos">
+										打野
+									</div>
+								</div>
+								<div id="">
+									<div id="">
+										<img :src="enemy" id="skills" />
+									</div>
+									<div class="pos">
+										中单
+									</div>
+								</div>
+								<div id="">
+									<div id="">
+										<img :src="enemy" id="skills" />
+									</div>
+									<div class="pos">
+										AD
+									</div>
+								</div>
+								<div id="">
+									<div id="">
+										<img :src="enemy" id="skills" />
+									</div>
+									<div class="pos">
+										辅助
+									</div>
+								</div>
+							</div>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#container",
+				data: {
+					a: "afh",
+					sqlstr1: `SELECT * FROM skills WHERE hero='璐璐'`,
+					hero: '',
+					skill: '',
+					set: [],
+					dei: 'http://127.0.0.1:3200/public/white.jpg',
+					currentLengend: {},
+					lengendsImage: '',
+					skillImage: '',
+					enemy: 'http://127.0.0.1:3200/public/avatar/快乐.jpg',
+					weLengdens: [1,2,3,4,5],
+					position: [{
+						lengend: '',
+						posi: "上单"
+					},{
+						lengend: '',
+						posi: "打野"
+					},{
+						lengend: '',
+						posi: "中单"
+					},{
+						lengend: '',
+						posi: "AD"
+					},{
+						lengend: '',
+						posi: "辅助"
+					}],
+					flag: false
+					
+				},
+				created() {
+					this.getAllInfo()
+				},
+				methods: {
+					getData: async () => {
+						// const ret = await axios.get('http://127.0.0.1:3200/imp')
+						// const sqlOrder =  `SELECT * FROM skills WHERE hero='${vm.hero}'`
+						// const sqlOrder2 = `SELECT student.name AS sname,student.mode,student.region,skills.name FROM student,skills WHERE skills.hero=student.name`
+						// const ret = await axios.post('http://127.0.0.1:3200/sql', {so: sqlOrder})
+						// const ret2 = await axios.post('http://127.0.0.1:3200/sql', {so: sqlOrder2})
+						// console.log(ret2)
+						// console.log(ret)
+						// vm.set = ret2.data
+						// console.log(vm.set)
+						// vm.skill = ret.data[0].name
+						// console.log(vm.skill)
+					},
+					getInfo: async (item) => {
+						vm.currentLengend = item
+						vm.lengendsImage = 'http://127.0.0.1:3200/public/' + item.sname + '.jpg'
+						vm.skillImage = 'http://127.0.0.1:3200/public/skills/' + item.name + '.png'
+					},
+					getAllInfo: async () => {
+						const sqlOrder =
+							`SELECT student.name AS sname,student.mode,student.region,skills.name FROM student,skills WHERE skills.hero=student.name`
+						const ret = await axios.post('http://127.0.0.1:3200/sql', {
+							so: sqlOrder
+						})
+						console.log(ret)
+						vm.set = ret.data
+					},
+					addToUs: async (e) => {
+						console.log("a")
+						const yaojia = e.target.innerText
+						const allposi = vm.$refs.yy
+						const allposi2 = vm.$refs.pp
+						// console.log(allposi[2].src)
+						console.log(typeof(allposi))
+						// console.log(allposi2[3])
+						allposi.forEach(el => {
+							let ind = allposi.indexOf(el)
+							console.log(decodeURI(el.src.substr(36)))
+							
+							if(decodeURI(el.src.substr(36)) == vm.currentLengend.sname + '.jpg') {
+								el.src = vm.dei
+							}
+							if(allposi2[ind].innerText == yaojia) {
+								el.src = "http://127.0.0.1:3200/public/avatar/" + vm.currentLengend.sname +'.jpg'
+							}
+						})
+						
+					}
+					// xiala: () => {
+					// 	// vm.$refs.jj.style.display = "block"
+					// }
+					// addLengends: async () => {
+					// 	const sqlStrs = [
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(13,'沃利贝尔',333,'战士','弗雷尔卓德')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(15,'泽拉斯',333,'法师','恕瑞玛')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(16,'凯南',333,'法师','艾欧尼亚')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(17,'拉克丝',333,'法师','德玛西亚')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(18,'德莱文',333,'射手','诺克萨斯')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(19,'嘉文四世',333,'坦克','德玛西亚')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(20,'易',333,'刺客','艾欧尼亚')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(21,'内瑟斯',333,'战士','恕瑞玛')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(22,'卡兹克',333,'刺客','虚空')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(23,'艾克',333,'刺客','祖安')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(24,'图奇',333,'射手','祖安')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(25,'崔丝塔娜',333,'射手','班德尔城')`,
+					// 		`INSERT INTO student(id,name,age,mode,region) VALUES(14,'奥恩',333,'坦克','弗雷尔卓德')`
+					// 	]
+					// 	const ret = await axios.post('http://127.0.0.1:3200/sql', {so: sqlStrs})
+					// 	console.log(ret)
+					// }
+				},
+				components: {
+
+				}
+			})
+		</script>
+	</body>
+</html>
