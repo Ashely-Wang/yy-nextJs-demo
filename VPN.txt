@@ -1,0 +1,59 @@
+VPN(Virtual Private Network):虚拟专有网络，解决在互联网上通信的安全问题，可以通过PKI技术来实现在不安全的网络上安全通信
+安全三要素:(1)机密性(2)完整性(3)身份验证
+VPN类型:
+1.远程访问VPN(Remote Access VPN)
+一般用在个人到企业的安全连接
+常见协议: PPTP VPN,L2TP VPN,SSTP VPN
+EZ VPN,SSL VPN
+2.点到点VPN
+一般用在企业对企业安全连接
+常见协议IPsecVPN
+
+IPsecVPN：
+在两家企业间建立VPN隧道：
+VPN隧道优点: (1)安全 (2)合并两家内网
+
+#####################################################################
+工作过程以及相关命令：
+1.管理连接
+(通过非对称加密算法加密对称加密算法所用的对称密钥)
+conf t
+crypto isakmp policy 策略集号
+encapsulotion 加密方式(例如aes)
+group 组号
+hash 哈希算法(用以认证例如sha)
+authentication pre-share
+exit
+crypto isakmp key 预共享密钥 address 对方IP
+
+access-list ACL表号 permit ip 源IP 反子网掩码 目标IP 反子网掩码
+(为VPN设置ACL表以便匹配那些需要走VPN隧道的数据包)
+
+
+
+
+
+
+
+2.传输连接
+(通过对称加密算法加密实际所要传输的私网数据)
+crypto ipsec transform-set 传输模式名 加密算法(来完成加密) 认证算法(来完成身份验证+完整性)
+(定义第二阶段加密方式)
+ESP: 支持加密和认证(身份验证+完整性)
+AH: 只支持认证，但是认证力度比ESP大
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+创建MAP映射表:
+crypto map 总表名 表号 ipsec-isakmp
+set peer 目标IP
+match address 之前定义的用于匹配的ACL表表号
+set transform-set 之前定义好的传输集名
+exit
+interface 要应用VPN技术的接口
+crypto map 刚才定义好的总表名
+(将定义好的总表应用在指定接口上)
+exit
+(搞定，牛逼！！)
+
+
+
+

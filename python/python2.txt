@@ -1,0 +1,2 @@
+在使用os.system("mspaint")调用cmd命令的时候总是会跳出终端，此时可用subprocess中的run方法解决该问题
+具体用法为：run("mspaint", shell=True)

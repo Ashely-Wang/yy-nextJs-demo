@@ -1,0 +1,119 @@
+python打包成exe可执行文件命令：
+	pyinstaller -F 指定python文件
+tkinter:
+1.只能有一个Tk()对象
+
+python更换桌面壁纸:
+##########################################
+from bs4 import BeautifulSoup
+from PIL import Image
+import win32gui
+import win32con
+import win32api
+import re
+import sys
+import os
+
+
+def setWallpaper(imagepath):
+    k = win32api.RegOpenKeyEx(win32con.HKEY_CURRENT_USER,"Control Panel\\Desktop",0,win32con.KEY_SET_VALUE)
+    win32api.RegSetValueEx(k, "WallpaperStyle", 0, win32con.REG_SZ, "2") 
+    win32api.RegSetValueEx(k, "TileWallpaper", 0, win32con.REG_SZ, "0")
+    win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER,imagepath, 1+2)
+ 
+def setWallPaperBMP(imagePath):
+    bmpImage = Image.open(imagePath)
+    newPath = imagePath.replace('.jpg', '.bmp')
+    bmpImage.save(newPath, "BMP")
+    setWallpaper(newPath)
+##########################################
+
+tkinter放置图片:
+load = Image.open('pic.jpg') # 我图片放桌面上
+        render= ImageTk.PhotoImage(load)
+ 
+        img = Label(self,image=render)
+        img.image = render
+        img.place(x=0,y=0)
+
+##########################################
+
+python实现远程登录:
+import paramiko
+def Arp(ip, tim):
+    s = paramiko.SSHClient() 
+    s.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # 允许连接不在know_hosts文件中的主机
+    s.connect("目标IP",22,"用户名", "密码")   
+    s.exec_command("要执行的shell命令")
+    s.close() # 断开连接
+
+###########################################
+
+利用scarpy发送ARP包
+from scapy.all import *
+pkt = ARP()
+pkt.psrc = "源IP地址"
+pkt.pdst = "目标IP地址"
+pkt.hsrc = "源Mac地址"
+pkt.hdst = "目标Mac地址"
+send(pkt) #三层发送
+sendt(pkt) #二层发送(需封装帧头)
+
+###########################################
+
+线程队列:
+import queue
+q1 = queue.Queue() #先进先出
+q1.put()
+q1.get()
+q2 = queue.LifoQueue() #后进先出
+q2.put()
+q2.get()
+q3 = queue.PriorityQueue() #根据优先权
+q3.put()
+q3.get()
+
+###########################################
+
+匹配任意长度字符串：.*?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

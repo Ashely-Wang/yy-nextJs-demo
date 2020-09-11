@@ -3,7 +3,11 @@
 只能基于源IP
 命令：
 conf t
-access-list 表号 permit/deny 源IP或源网段 反子网掩码(用来匹配，与0对应的严格匹配，与255对应的忽略不匹配)
+access-list 表号 permit/deny 源IP或源网段 反子网掩码
+(用来匹配，与0对应的严格匹配，与255对应的忽略不匹配)
+int 接口
+ip access-group 表号 out/in
+(将配置好的ACL表应用在指定接口的out或in上)
 一个接口的一个方向只能应用一张表
 每一条都是由条件和动作组成
 先后顺序为从上至下：
@@ -12,3 +16,6 @@ access-list 表号 permit/deny 源IP或源网段 反子网掩码(用来匹配，与0对应的严格匹配
 扩展ACL：
 表号：100-199
 可以基于源IP，目标IP，端口号，协议等对包进行过滤
+命令：
+conf t
+access-list 表号 permit/deny 协议 源IP或源网段 反子网掩码 目标IP或源IP eq 端口号
