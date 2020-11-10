@@ -10,7 +10,7 @@ C:\windows\system32\cmd.exe
 3389Ô¶³Ì×ÀÃæ·þÎñ
 23telnetÐ­Òé
 445ÎÄ¼þ¹²Ïí·þÎñÆ÷
-67/68DHCP·þÎñÆ÷¹¤×÷¶Ë¿Ú
+udp67/68DHCP·þÎñÆ÷¹¤×÷¶Ë¿Ú
 DHCP¿Í»§»úÃ¿µ½50%Ê±·¢ËÍrequest°ü½øÐÐÐøÔ¼£¬Èô·þÎñÆ÷ÎÞÏìÓ¦£¬87.5%Ê±ÔÙ´ÎÐøÔ¼£¬ÈôÔÚÐøÆÚÄÚÍË³ö£¬ÖØÐÂ½øÈëÊ±Èô»¹Ã»µ½ÆÚ£¬ÔòÒÀÈ»Ê¹ÓÃÖ®Ç°ÄÇ¸öIPµØÖ·
 Ã»ÓÐIPµÄÊ±ºòipconfig /renew »á·¢ËÍdiscovery¹ã²¥±¨£¬
 Èç¹ûÒÑ¾­·ÖÅäÁËIp£¬ÔÙipconfig /renew Ôò»á·¢ËÍrequest½øÐÐÐøÔ¼
@@ -18,6 +18,7 @@ DHCP¿Í»§»úÃ¿µ½50%Ê±·¢ËÍrequest°ü½øÐÐÐøÔ¼£¬Èô·þÎñÆ÷ÎÞÏìÓ¦£¬87.5%Ê±ÔÙ´ÎÐøÔ¼£¬ÈôÔÚÐ
 53DNS·þÎñÆ÷¶Ë¿ÚºÅ(tcp53,udp53)
 80http¶Ë¿ÚºÅ
 443httpsÐ­Òé¶Ë¿ÚºÅ
+sql server 1433
 ä¯ÀÀÆ÷¼´http¿Í»§¶Ë
 web·þÎñÆ÷£º
 Î¢Èí£º IIS(·¢²¼ÍøÕ¾ºÍFTP·þÎñÆ÷)
@@ -47,7 +48,7 @@ FTP±»¶¯Ä£Ê½£º
 ntp(network time protocol)·þÎñÆ÷:
 Ê¹µÃ¼ÆËã»úÊ±¼äÍ¬²½»¯µÄÒ»ÖÖÐ­Òé£¬¹¤×÷¶Ë¿Ú: 123udp
 ##########################
-IMAP£¨Internet Mail Access Protocol£©ÒÔÇ°³Æ×÷½»»¥ÓÊ¼þ·ÃÎÊÐ­Òé£¨Interactive Mail Access Protocol£©£¬ÊÇÒ»¸öÓ¦ÓÃ²ãÐ­Òé¡£IMAPÊÇË¹Ì¹¸£´óÑ§ÔÚ1986Äê¿ª·¢µÄÒ»ÖÖÓÊ¼þ»ñÈ¡Ð­Òé¡£ËüµÄÖ÷Òª×÷ÓÃÊÇÓÊ¼þ¿Í»§¶Ë¿ÉÒÔÍ¨¹ýÕâÖÖÐ­Òé´ÓÓÊ¼þ·þÎñÆ÷ÉÏ»ñÈ¡ÓÊ¼þµÄÐÅÏ¢£¬ÏÂÔØÓÊ¼þµÈ¡£µ±Ç°µÄÈ¨Íþ¶¨ÒåÊÇRFC3501¡£IMAPÐ­ÒéÔËÐÐÔÚTCP/IPÐ­ÒéÖ®ÉÏ£¬Ê¹ÓÃµÄ¶Ë¿ÚÊÇ143¡£ËüÓëPOP3Ð­ÒéµÄÖ÷ÒªÇø±ðÊÇÓÃ»§¿ÉÒÔ²»ÓÃ°ÑËùÓÐµÄÓÊ¼þÈ«²¿ÏÂÔØ£¬¿ÉÒÔÍ¨¹ý¿Í»§¶ËÖ±½Ó¶Ô·þÎñÆ÷ÉÏµÄÓÊ¼þ½øÐÐ²Ù×÷¡£
+IMAP£¨Internet Mail Access Protocol£©ÒÔÇ°³Æ×÷½»»¥ÓÊ¼þ·ÃÎÊÐ­Òé£¨Interactive Mail Access Protocol£©£¬ÊÇÒ»¸öÓ¦ÓÃ²ãÐ­Òé¡£IMAPÊÇË¹Ì¹¸£´óÑ§ÔÚ1986Äê¿ª·¢µÄÒ»ÖÖÓÊ¼þ»ñÈ¡Ð­Òé¡£ËüµÄÖ÷Òª×÷ÓÃÊÇÓÊ¼þ¿Í»§¶Ë¿ÉÒÔÍ¨¹ýÕâÖÖÐ­Òé´ÓÓÊ¼þ·þÎñÆ÷ÉÏ»ñÈ¡ÓÊ¼þµÄÐÅÏ¢£¬ÏÂÔØÓÊ¼þµÈ¡£µ±Ç°µÄÈ¨Íþ¶¨ÒåÊÇRFC3501¡£IMAPÐ­ÒéÔËÐÐÔÚTCP/IPÐ­ÒéÖ®ÉÏ£¬Ê¹ÓÃµÄ¶Ë¿ÚÊÇ143¡£ËüÓëPOP3Ð­ÒéµÄÖ÷ÒªÇø±ðÊÇÓÃ»§¿ÉÒÔ²»ÓÃ°ÑËùÓÐµÄÓÊ¼þÈ«²¿ÏÂÔØ£¬¿ÉÒÔÍ¨¹ý¿Í»§¶ËÖ±½Ó¶Ô·þÎñÆ÷ÉÏµÄÓÊ¼þ½øÐÐ²Ù×÷.
 ################################
 hostºÍservicesÎÄ¼þ´æ·ÅÎ»ÖÃ
 C:\windows\system32\drivers\etc

@@ -24,6 +24,9 @@ yes manual up    up 完全成功且能连上
 默认不能查看配置，但可以修改，修改后的配置对当前接口生效
 5.Switch(config-line)console配置模式
 
+
+
+
 路由器和交换机的命令行基本一样
 但是对接口来说需要手动开启，即no shutdown命令
 如果想要管理路由器，除了通过console连接路由器和PC的com接口以外，还可以通过telnet来远程操控，但是需要手动把路由器的23端口打开

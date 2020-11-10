@@ -1,0 +1,11 @@
+路由方式的选择因素：最长匹配原则 =》 管理距离值(优先级) =》 度量值
+rip协议最多支持15跳，rip请求包为广播请求单播回应，rip回复包周期性地发送/更新路由信息，周期为25-30秒，广播更新，不可靠传输(udp520)
+ripv1:
+有类路由，只能识别8，16，24，32，不能识别子网掩码
+ripv2:
+无类路由，以跳数作为度量值
+ospf:
+无类路由，传递链路状态信息而不是具体的路由条目.
+
+路由重分发：redistribute static subnets/redistribute rip metric ****/redistribute ospf metric
+路由过滤：
